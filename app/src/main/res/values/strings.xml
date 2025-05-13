@@ -3,4 +3,9 @@
     <string name="title">GASKEUN!</string>
     <string name="subtitle">Naik Rank? Serahin Aja ke Kita!</string>
     <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="masukkan_disini">Masukkan Disini</string>
+    <string name="login">Login</string>
+    <string name="buat_akun">Belum Punya Akun? Gas Bikin!</string>
+
 </resources>
