@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
-        android:fontFamily="@font/Jersey25"
+        android:fontFamily="@font/jersey25"
         android:text="Daftar Akun"
         android:textColor="#FFFFFF"
         android:textSize="60sp"
@@ -38,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="130dp"
-        android:fontFamily="@font/Jersey25"
+        android:fontFamily="@font/jersey25"
         android:text="Daftar dulu yuk!"
         android:textColor="#FFFFFF"
         android:textSize="25sp"
@@ -69,7 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:fontFamily="@font/InriaSans"
+            android:fontFamily="@font/inriasans"
             android:text="@string/username"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -77,7 +77,7 @@
         <!-- Input Username  -->
         <EditText
             android:id="@+id/username"
-            android:layout_width="310dp"
+            android:layout_width="match_parent"
             android:layout_height="54dp"
             android:layout_marginTop="4dp"
             android:background="@drawable/edittext_background"
@@ -93,7 +93,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:fontFamily="@font/InriaSans"
+            android:fontFamily="@font/inriasans"
             android:text="@string/password"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -101,7 +101,7 @@
         <!-- Input Password  -->
         <EditText
             android:id="@+id/password"
-            android:layout_width="310dp"
+            android:layout_width="match_parent"
             android:layout_height="54dp"
             android:layout_marginTop="4dp"
             android:background="@drawable/edittext_background"
@@ -116,7 +116,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:fontFamily="@font/InriaSans"
+            android:fontFamily="@font/inriasans"
             android:text="E-Mail"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -124,7 +124,7 @@
 
         <!-- Input Email  -->
         <EditText
-            android:layout_width="310dp"
+            android:layout_width="match_parent"
             android:layout_height="54dp"
             android:layout_marginTop="4dp"
             android:background="@drawable/edittext_background"
@@ -139,7 +139,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:fontFamily="@font/InriaSans"
+            android:fontFamily="@font/inriasans"
             android:text="Nomor Telepon"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -147,7 +147,7 @@
 
         <!-- Input Nomor Telepon  -->
         <EditText
-            android:layout_width="310dp"
+            android:layout_width="match_parent"
             android:layout_height="54dp"
             android:layout_marginTop="4dp"
             android:background="@drawable/edittext_background"
@@ -160,7 +160,7 @@
         <Button
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/Jersey25"
+            android:fontFamily="@font/jersey25"
             android:textSize="25sp"
             android:text="Daftar"
             android:textColor="#FFFFFF"
@@ -169,21 +169,5 @@
             android:background="@drawable/button_background"
             tools:ignore="HardcodedText" />
     </LinearLayout>
-
-    <!-- Text bawah -->
-    <TextView
-        android:id="@+id/buatAkun"
-        android:fontFamily="@font/InriaSans"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/loginForm"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="570dp"
-        android:text="@string/buat_akun"
-        android:textColor="#D9534F"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
