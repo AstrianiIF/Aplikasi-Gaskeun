@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3E3E3E">
+
+    <!-- HEADER -->
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="0dp"
+        android:layout_height="180dp"
+        android:background="#D9534F"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+    </RelativeLayout>
+
+
+    <!-- Bottom Navigation -->
+    <LinearLayout
+        android:id="@+id/bottomNav"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:background="#FFFFFF"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/navHome"
+            android:layout_width="60dp"
+            android:layout_weight="1"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_home"
+            app:tint="#808080"
+            android:padding="12dp"/>
+
+        <ImageView
+            android:id="@+id/navCalendar"
+            android:layout_width="60dp"
+            android:layout_weight="1"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_calendar"
+            app:tint="#808080"
+            android:padding="12dp"/>
+
+        <ImageView
+            android:id="@+id/navProfile"
+            android:layout_width="60dp"
+            android:layout_weight="1"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_profile"
+            app:tint="#D9534F"
+            android:padding="12dp"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

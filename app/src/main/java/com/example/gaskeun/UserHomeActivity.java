@@ -2,8 +2,7 @@ package com.example.gaskeun;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,31 +10,32 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class Login extends AppCompatActivity {
+public class UserHomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_user_home);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        // Fungsi Klik Daftar Akun
-        TextView registerNow = findViewById(R.id.buatAkun);
-        registerNow.setOnClickListener(v -> {
-            Intent intent = new Intent(Login.this, DaftarAkun.class);
+        ImageView navCalendar = findViewById(R.id.navCalendar);
+        ImageView navProfile = findViewById(R.id.navProfile);
+
+        // Navigasi Bar
+        navCalendar.setOnClickListener(v -> {
+            Intent intent = new Intent(UserHomeActivity.this, UserPesanActivity.class);
             startActivity(intent);
         });
 
-        // Fungsi Tombol Login
-        Button loginButton = findViewById(R.id.login_button);
-        loginButton.setOnClickListener(v -> {
-            Intent intent = new Intent(Login.this, UserHomeActivity.class);
+        navProfile.setOnClickListener(v -> {
+            Intent intent = new Intent(UserHomeActivity.this, UserProfileActivity.class);
             startActivity(intent);
         });
+
     }
 }
