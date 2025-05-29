@@ -2,6 +2,7 @@ package com.example.gaskeun;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -27,6 +28,13 @@ public class Login extends AppCompatActivity {
         TextView registerNow = findViewById(R.id.buatAkun);
         registerNow.setOnClickListener(v -> {
             Intent intent = new Intent(Login.this, DaftarAkun.class);
+            startActivity(intent);
+        });
+
+        // Fungsi Tombol Login
+        Button loginButton = findViewById(R.id.login_button);
+        loginButton.setOnClickListener(v -> {
+            Intent intent = new Intent(Login.this, UserProfileActivity.class);
             startActivity(intent);
         });
     }
