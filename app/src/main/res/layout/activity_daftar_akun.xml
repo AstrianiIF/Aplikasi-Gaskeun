@@ -83,7 +83,7 @@
             android:background="@drawable/edittext_background"
             android:hint="@string/masukkan_disini"
             android:importantForAutofill="no"
-            android:inputType="textPassword"
+            android:inputType="text"
             android:padding="10dp"
             android:textColorHint="#757575"
             tools:ignore="DuplicateSpeakableTextCheck" />

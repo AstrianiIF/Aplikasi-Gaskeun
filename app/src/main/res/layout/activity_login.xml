@@ -82,7 +82,7 @@
             android:background="@drawable/edittext_background"
             android:hint="@string/masukkan_disini"
             android:importantForAutofill="no"
-            android:inputType="textPassword"
+            android:inputType="text"
             android:padding="10dp"
             android:textColorHint="#757575"
             tools:ignore="DuplicateSpeakableTextCheck" />
@@ -111,6 +111,7 @@
             android:textColorHint="#757575" />
 
         <Button
+            android:id="@+id/login_button"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/jersey25"
@@ -133,7 +134,7 @@
         android:layout_marginTop="570dp"
         android:text="@string/buat_akun"
         android:textColor="#D9534F"
-        android:textSize="14sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
