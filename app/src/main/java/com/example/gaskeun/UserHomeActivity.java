@@ -1,8 +1,10 @@
 package com.example.gaskeun;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +27,21 @@ public class UserHomeActivity extends AppCompatActivity {
 
         ImageView navCalendar = findViewById(R.id.navCalendar);
         ImageView navProfile = findViewById(R.id.navProfile);
+        ImageView chatIcon = findViewById(R.id.chatIcon);
+
+        // Fungsi Tombol Chat
+        chatIcon.setOnClickListener(v -> {
+            String phoneNumber = "6285158602224"; // Ganti nomor
+            String url = "https://wa.me/" + phoneNumber;
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(url));
+            intent.setPackage("com.whatsapp");
+            try {
+                startActivity(intent);
+            } catch (Exception e) {
+                Toast.makeText(getApplicationContext(), "WhatsApp tidak terpasang.", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         // Navigasi Bar
         navCalendar.setOnClickListener(v -> {
