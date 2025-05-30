@@ -24,15 +24,16 @@ public class Login extends AppCompatActivity {
             return insets;
         });
 
-        // Fungsi Klik Daftar Akun
         TextView registerNow = findViewById(R.id.buatAkun);
+        Button loginButton = findViewById(R.id.login_button);
+
+        // Fungsi Klik Daftar Akun
         registerNow.setOnClickListener(v -> {
             Intent intent = new Intent(Login.this, DaftarAkun.class);
             startActivity(intent);
         });
 
         // Fungsi Tombol Login
-        Button loginButton = findViewById(R.id.login_button);
         loginButton.setOnClickListener(v -> {
             Intent intent = new Intent(Login.this, UserHomeActivity.class);
             startActivity(intent);

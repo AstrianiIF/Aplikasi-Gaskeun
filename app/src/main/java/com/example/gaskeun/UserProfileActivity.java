@@ -2,6 +2,7 @@ package com.example.gaskeun;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
@@ -25,6 +26,13 @@ public class UserProfileActivity extends AppCompatActivity {
 
         ImageView navHome = findViewById(R.id.navHome);
         ImageView navCalendar = findViewById(R.id.navCalendar);
+        Button logoutButton = findViewById(R.id.logout_button);
+
+        // Fungsi Logout
+        logoutButton.setOnClickListener(view -> {
+            Intent intent = new Intent(UserProfileActivity.this, Login.class);
+            startActivity(intent);
+        });
 
         // Navigasi Bar
         navHome.setOnClickListener(v -> {
