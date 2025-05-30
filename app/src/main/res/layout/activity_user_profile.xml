@@ -24,11 +24,10 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="37dp"
-            android:text="Profile Akun"
+            android:text="Akun Profile"
             android:fontFamily="@font/jersey25"
             android:textSize="60sp"
             android:textColor="#FFFFFF"
-            android:textStyle="bold"
             tools:ignore="HardcodedText" />
     </RelativeLayout>
 
