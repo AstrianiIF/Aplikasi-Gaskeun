@@ -50,7 +50,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/infoCard"
         android:layout_width="0dp"
-        android:layout_height="360dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="-40dp"
         android:layout_marginLeft="28dp"
         android:layout_marginRight="28dp"
