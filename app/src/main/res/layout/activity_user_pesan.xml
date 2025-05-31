@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,8 +17,184 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/title"
+            android:fontFamily="@font/jersey25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Booking\nJasa Joki"
+            android:textColor="#FFFFFF"
+            android:textSize="60sp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            tools:ignore="HardcodedText"/>
     </RelativeLayout>
 
+    <!-- FORM INPUT -->
+    <LinearLayout
+        android:id="@+id/formInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/form_background"
+        android:padding="16dp"
+        android:elevation="4dp"
+        android:layout_margin="16dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@+id/header"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/jersey25"
+            android:text="Masukkan Detail Akun"
+            android:textColor="#000000"
+            android:textSize="25sp"
+            android:layout_marginBottom="8dp"
+            tools:ignore="HardcodedText"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Masukkan Username"
+            android:background="@drawable/edittext_background"
+            android:padding="10dp"
+            android:textColorHint="#808080"
+            android:textColor="#000000"
+            android:layout_marginBottom="8dp"
+            android:inputType="textPersonName"
+            tools:ignore="Autofill,HardcodedText"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Masukkan Password"
+            android:background="@drawable/edittext_background"
+            android:padding="10dp"
+            android:textColorHint="#808080"
+            android:textColor="#000000"
+            android:inputType="textPassword"
+            tools:ignore="Autofill,HardcodedText"/>
+    </LinearLayout>
+
+    <!-- RANK TUJUAN -->
+    <LinearLayout
+        android:id="@+id/rankTujuan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/form_background"
+        android:padding="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:elevation="4dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/formInput"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/jersey25"
+            android:text="Rank Tujuan"
+            android:textColor="#000000"
+            android:textSize="25sp"
+            android:background="@android:color/transparent"
+            tools:ignore="HardcodedText"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Master III"
+                android:textSize="23sp"
+                android:fontFamily="@font/jersey25"
+                android:background="@drawable/rank_box"
+                android:padding="8dp"
+                android:textColor="#FFFFFF"
+                tools:ignore="HardcodedText"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="→"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:layout_marginHorizontal="8dp"
+                tools:ignore="HardcodedText"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Epic II"
+                android:fontFamily="@font/jersey25"
+                android:textSize="23sp"
+                android:background="@drawable/rank_box"
+                android:padding="8dp"
+                android:textColor="#FFFFFF"
+                tools:ignore="HardcodedText"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- ESTIMASI -->
+    <LinearLayout
+        android:id="@+id/estimasiPengerjaan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/rankTujuan"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/jersey25"
+            android:text="Estimasi Selesai : 3 Hari"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp"
+            tools:ignore="HardcodedText"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/jersey25"
+            android:text="Estimasi Harga  :  Rp. 60.000,00"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp"
+            android:layout_marginTop="4dp"
+            tools:ignore="HardcodedText"/>
+    </LinearLayout>
+
+    <!-- BUTTON BAYAR -->
+    <Button
+        android:id="@+id/btnBayar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/jersey25"
+        android:textSize="20sp"
+        android:text="Bayar"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/button_background"
+        android:layout_marginTop="-30dp"
+        app:layout_constraintTop_toBottomOf="@+id/estimasiPengerjaan"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNav"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="HardcodedText" />
 
     <!-- Bottom Navigation -->
     <LinearLayout
@@ -38,7 +215,8 @@
             android:layout_height="60dp"
             android:src="@drawable/ic_home"
             app:tint="#808080"
-            android:padding="12dp"/>
+            android:padding="12dp"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/navCalendar"
@@ -47,7 +225,8 @@
             android:layout_height="60dp"
             android:src="@drawable/ic_calendar"
             app:tint="#D9534F"
-            android:padding="12dp"/>
+            android:padding="12dp"
+            tools:ignore="ContentDescription"/>
 
         <ImageView
             android:id="@+id/navProfile"
@@ -56,7 +235,7 @@
             android:layout_height="60dp"
             android:src="@drawable/ic_profile"
             app:tint="#808080"
-            android:padding="12dp"/>
+            android:padding="12dp"
+            tools:ignore="ContentDescription"/>
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
