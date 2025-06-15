@@ -3,7 +3,9 @@ package com.example.gaskeun;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +14,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class Login extends AppCompatActivity {
+
+    EditText usernameInput, passwordInput;
+    Button loginButton;
+    TextView registerNow;
+    DatabaseHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,19 +31,36 @@ public class Login extends AppCompatActivity {
             return insets;
         });
 
-        TextView registerNow = findViewById(R.id.buatAkun);
-        Button loginButton = findViewById(R.id.login_button);
+        // Inisialisasi view
+        usernameInput = findViewById(R.id.username);
+        passwordInput = findViewById(R.id.password);
+        loginButton = findViewById(R.id.login_button);
+        registerNow = findViewById(R.id.buatAkun);
+        dbHelper = new DatabaseHelper(this);
 
-        // Fungsi Klik Daftar Akun
+        // Tombol "Buat Akun"
         registerNow.setOnClickListener(v -> {
             Intent intent = new Intent(Login.this, DaftarAkun.class);
             startActivity(intent);
         });
 
-        // Fungsi Tombol Login
+        // Tombol Login
         loginButton.setOnClickListener(v -> {
-            Intent intent = new Intent(Login.this, UserHomeActivity.class);
-            startActivity(intent);
+            String username = usernameInput.getText().toString().trim();
+            String password = passwordInput.getText().toString().trim();
+
+            // Cek apakah login sebagai user atau joki
+            if (dbHelper.checkUserCredentials(username, password)) {
+                Toast.makeText(Login.this, "Login sebagai User!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(Login.this, UserHomeActivity.class));
+                finish();
+            } else if (dbHelper.checkJokiCredentials(username, password)) {
+                Toast.makeText(Login.this, "Login sebagai Joki!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(Login.this, JokiHomeActivity.class));
+                finish();
+            } else {
+                Toast.makeText(Login.this, "Username atau Password salah!", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 }
