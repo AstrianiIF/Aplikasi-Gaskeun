@@ -1,7 +1,9 @@
 package com.example.gaskeun;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -29,9 +31,21 @@ public class JokiProfileActivity extends AppCompatActivity {
         Button logoutButton = findViewById(R.id.logout_button);
 
         // Fungsi Logout
-        logoutButton.setOnClickListener(view -> {
-            Intent intent = new Intent(JokiProfileActivity.this, Login.class);
-            startActivity(intent);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Hapus session
+                SharedPreferences prefs = getSharedPreferences("user_session", MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.clear(); // hapus semua data sesi
+                editor.apply();
+
+                // Kembali ke LoginActivity
+                Intent intent = new Intent(JokiProfileActivity.this, Login.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // clear semua activity
+                startActivity(intent);
+                finish();
+            }
         });
 
         // Navigasi Bar

@@ -6,9 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "gaskeun.db";
@@ -30,12 +27,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_JOKI_EMAIL = "email";
     public static final String COL_JOKI_PHONE = "phone";
 
+    // Table Transaksi
+    public static final String TABLE_TRANSAKSI = "transaksi";
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        // Create table users
         String CREATE_USERS = "CREATE TABLE " + TABLE_USERS + " (" +
                 COL_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COL_USERNAME + " TEXT UNIQUE, " +
@@ -43,6 +44,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COL_EMAIL + " TEXT, " +
                 COL_PHONE + " TEXT);";
 
+        // Create table joki
         String CREATE_JOKI = "CREATE TABLE " + TABLE_JOKI + " (" +
                 COL_JOKI_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COL_JOKI_USERNAME + " TEXT UNIQUE, " +
@@ -50,11 +52,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COL_JOKI_EMAIL + " TEXT, " +
                 COL_JOKI_PHONE + " TEXT);";
 
-        db.execSQL(CREATE_USERS);
-        db.execSQL(CREATE_JOKI);
-
-        // Tambah tanle transaksi
-        String CREATE_TRANSAKSI = "CREATE TABLE transaksi (" +
+        // Create table transaksi
+        String CREATE_TRANSAKSI = "CREATE TABLE " + TABLE_TRANSAKSI + " (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "customer_username TEXT, " +
                 "penjoki_username TEXT, " +
@@ -63,9 +62,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "jumlah_hari INTEGER, " +
                 "game TEXT, " +
                 "harga INTEGER, " +
-                "status TEXT DEFAULT 'menunggu')";
+                "status TEXT DEFAULT 'menunggu');";
+
+        db.execSQL(CREATE_USERS);
+        db.execSQL(CREATE_JOKI);
         db.execSQL(CREATE_TRANSAKSI);
 
+        // Tambah joki default
         ContentValues joki1 = new ContentValues();
         joki1.put(COL_JOKI_USERNAME, "Joki1");
         joki1.put(COL_JOKI_PASSWORD, "Joki123");
@@ -77,12 +80,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // Drop old tables if upgrading
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_JOKI);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TRANSAKSI);
         onCreate(db);
     }
 
+    // ======================== USER ========================
     public boolean registerUser(String username, String password, String email, String phone) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -105,6 +109,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result;
     }
 
+    public Cursor getUserData(String username) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE username = ?", new String[]{username});
+    }
+
+    // ======================== JOKI ========================
     public boolean checkJokiCredentials(String username, String password) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM " + TABLE_JOKI + " WHERE " +
@@ -115,11 +125,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result;
     }
 
-    public Cursor getUserData(String username) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        return db.rawQuery("SELECT * FROM users WHERE username = ?", new String[]{username});
-    }
-
+    // ======================== TRANSAKSI ========================
     public boolean buatTransaksiLengkap(
             String customerUsername,
             String penjokiUsername,
@@ -140,7 +146,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put("harga", harga);
         values.put("status", "menunggu");
 
-        long result = db.insert("transaksi", null, values);
+        long result = db.insert(TABLE_TRANSAKSI, null, values);
         return result != -1;
     }
 
@@ -162,10 +168,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put("harga", harga);
         values.put("status", "menunggu");
 
-        long result = db.insert("transaksi", null, values);
+        long result = db.insert(TABLE_TRANSAKSI, null, values);
         return result != -1;
     }
 
-
+    public boolean updateStatusToAcc(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("status", "disetujui");
+        int result = db.update(TABLE_TRANSAKSI, values, "id=?", new String[]{String.valueOf(id)});
+        return result > 0;
+    }
 }
-
