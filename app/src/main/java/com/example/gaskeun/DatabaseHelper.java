@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "gaskeun.db";
@@ -49,6 +52,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL(CREATE_USERS);
         db.execSQL(CREATE_JOKI);
+
+        // Tambah tanle transaksi
+        String CREATE_TRANSAKSI = "CREATE TABLE transaksi (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "customer_username TEXT, " +
+                "penjoki_username TEXT, " +
+                "username_game TEXT, " +
+                "password_game TEXT, " +
+                "jumlah_hari INTEGER, " +
+                "game TEXT, " +
+                "harga INTEGER, " +
+                "status TEXT DEFAULT 'menunggu')";
+        db.execSQL(CREATE_TRANSAKSI);
 
         ContentValues joki1 = new ContentValues();
         joki1.put(COL_JOKI_USERNAME, "Joki1");
@@ -98,6 +114,58 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return result;
     }
+
+    public Cursor getUserData(String username) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM users WHERE username = ?", new String[]{username});
+    }
+
+    public boolean buatTransaksiLengkap(
+            String customerUsername,
+            String penjokiUsername,
+            String usernameGame,
+            String passwordGame,
+            int jumlahHari,
+            String game,
+            int harga) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("customer_username", customerUsername);
+        values.put("penjoki_username", penjokiUsername);
+        values.put("username_game", usernameGame);
+        values.put("password_game", passwordGame);
+        values.put("jumlah_hari", jumlahHari);
+        values.put("game", game);
+        values.put("harga", harga);
+        values.put("status", "menunggu");
+
+        long result = db.insert("transaksi", null, values);
+        return result != -1;
+    }
+
+    public boolean buatTransaksiTanpaPenjoki(
+            String customerUsername,
+            String usernameGame,
+            String passwordGame,
+            int jumlahHari,
+            String game,
+            int harga) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("customer_username", customerUsername);
+        values.put("username_game", usernameGame);
+        values.put("password_game", passwordGame);
+        values.put("jumlah_hari", jumlahHari);
+        values.put("game", game);
+        values.put("harga", harga);
+        values.put("status", "menunggu");
+
+        long result = db.insert("transaksi", null, values);
+        return result != -1;
+    }
+
 
 }
 

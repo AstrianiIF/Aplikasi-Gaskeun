@@ -1,6 +1,7 @@
 package com.example.gaskeun;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,12 +32,26 @@ public class Login extends AppCompatActivity {
             return insets;
         });
 
-        // Inisialisasi view
+        // Inisialisasi view dan database
         usernameInput = findViewById(R.id.username);
         passwordInput = findViewById(R.id.password);
         loginButton = findViewById(R.id.login_button);
         registerNow = findViewById(R.id.buatAkun);
         dbHelper = new DatabaseHelper(this);
+
+        // Cek session login
+        SharedPreferences prefs = getSharedPreferences("user_session", MODE_PRIVATE);
+        String savedUsername = prefs.getString("username", null);
+        String savedRole = prefs.getString("role", null);
+
+        if (savedUsername != null && savedRole != null) {
+            if (savedRole.equals("user")) {
+                startActivity(new Intent(Login.this, UserHomeActivity.class));
+            } else if (savedRole.equals("joki")) {
+                startActivity(new Intent(Login.this, JokiHomeActivity.class));
+            }
+            finish(); // Tidak kembali ke login saat back
+        }
 
         // Tombol "Buat Akun"
         registerNow.setOnClickListener(v -> {
@@ -46,18 +61,34 @@ public class Login extends AppCompatActivity {
 
         // Tombol Login
         loginButton.setOnClickListener(v -> {
-            String username = usernameInput.getText().toString().trim();
-            String password = passwordInput.getText().toString().trim();
+            String inputUsername = usernameInput.getText().toString().trim();
+            String inputPassword = passwordInput.getText().toString().trim();
 
-            // Cek apakah login sebagai user atau joki
-            if (dbHelper.checkUserCredentials(username, password)) {
+            if (inputUsername.isEmpty() || inputPassword.isEmpty()) {
+                Toast.makeText(Login.this, "Isi Username dan Password!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (dbHelper.checkUserCredentials(inputUsername, inputPassword)) {
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString("username", inputUsername);
+                editor.putString("role", "user");
+                editor.apply();
+
                 Toast.makeText(Login.this, "Login sebagai User!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(Login.this, UserHomeActivity.class));
                 finish();
-            } else if (dbHelper.checkJokiCredentials(username, password)) {
+
+            } else if (dbHelper.checkJokiCredentials(inputUsername, inputPassword)) {
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString("username", inputUsername);
+                editor.putString("role", "joki");
+                editor.apply();
+
                 Toast.makeText(Login.this, "Login sebagai Joki!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(Login.this, JokiHomeActivity.class));
                 finish();
+
             } else {
                 Toast.makeText(Login.this, "Username atau Password salah!", Toast.LENGTH_SHORT).show();
             }

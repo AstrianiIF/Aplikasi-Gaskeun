@@ -79,15 +79,16 @@
                 tools:ignore="HardcodedText" />
 
             <TextView
+                android:id="@+id/txtUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="User"
-                android:textSize="20sp"
                 android:layout_marginTop="4dp"
-                android:fontFamily="@font/inriasans"
                 android:background="@drawable/rounded_gray"
+                android:fontFamily="@font/inriasans"
                 android:padding="10dp"
+                android:text="User"
                 android:textColor="#000000"
+                android:textSize="20sp"
                 tools:ignore="HardcodedText" />
 
             <!-- Email -->
@@ -102,15 +103,16 @@
                 tools:ignore="HardcodedText" />
 
             <TextView
+                android:id="@+id/txtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:fontFamily="@font/inriasans"
-                android:text="jenss@example.com"
                 android:layout_marginTop="4dp"
                 android:background="@drawable/rounded_gray"
+                android:fontFamily="@font/inriasans"
                 android:padding="10dp"
+                android:text="jenss@example.com"
                 android:textColor="#000000"
+                android:textSize="20sp"
                 tools:ignore="HardcodedText" />
 
             <!-- Telepon -->
@@ -125,15 +127,16 @@
                 tools:ignore="HardcodedText" />
 
             <TextView
+                android:id="@+id/txtPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:text="0867392374232"
                 android:layout_marginTop="4dp"
-                android:fontFamily="@font/inriasans"
                 android:background="@drawable/rounded_gray"
+                android:fontFamily="@font/inriasans"
                 android:padding="10dp"
+                android:text="0867392374232"
                 android:textColor="#000000"
+                android:textSize="20sp"
                 tools:ignore="HardcodedText" />
 
         </LinearLayout>

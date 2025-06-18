@@ -51,4 +51,12 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
 
+    <string-array name="game_options">
+        <item>Genshin Impact</item>
+        <item>Wuthering Waves</item>
+        <item>Honkai Starrail</item>
+        <item>Guardian Tales</item>
+    </string-array>
+
+
 </resources>
